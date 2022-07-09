@@ -24,4 +24,11 @@ describe('Lexical Analysis', () => {
     
         assert.deepEqual(tokens, []);
     })
+
+    it('Should be able to tokenize our parentheses', () => {
+        const string = '<>';
+        const tokens = tokenize(string);
+    
+        assert.deepEqual(tokens, ['<', '>']);
+    })
 })

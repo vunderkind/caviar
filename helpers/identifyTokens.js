@@ -1,6 +1,6 @@
 const LETTER = /[a-zA-Z]/;
 const NUMBER = /^[0-9]+$/;
-const OPERATORS = ['+', '-', '*', '/', '%', '^', '=', '<', '>', '<=', '>=', '!=', '==', '&&', '||', '!', '&', '|', '~', '<<', '>>', '>>>', '++', '--', ','];
+const OPERATORS = ['+', '-', '*', '/', '%', '='];
 const WHITESPACE = /\s+/;
 
 const isLetter = character => LETTER.test(character);
@@ -9,9 +9,9 @@ const isNumber = character => NUMBER.test(character);
 
 const isWhiteSpace = character => WHITESPACE.test(character);
 
-const isOpeningParenthesis = character => character === '(';
+const isOpeningParenthesis = character => character === '<';
 
-const isClosingParenthesis = character => character === ')';
+const isClosingParenthesis = character => character === '>';
 
 const isOperator = character => OPERATORS.includes(character);
 
@@ -28,4 +28,5 @@ module.exports = {
     isParenthesis,
     isQuote,
     isOperator,
+    isOpeningParenthesis,
 }

@@ -3,6 +3,7 @@ const {
   isNumber,
   isWhiteSpace,
   isParenthesis,
+  isOpeningParenthesis,
   isQuote,
   isOperator,
 } = require('./helpers/identifyTokens');
@@ -25,35 +26,50 @@ const tokenize = (string) => {
 
     if (isLetter(character)) {
       const word = string.substring(cursor, cursor + 1);
-      tokens.push(word);
+      tokens.push({
+        type: 'word',
+        value: word,
+      });
       cursor++;
       continue;
     }
 
     if (isNumber(character)) {
       const number = string.substring(cursor, cursor + 1);
-      tokens.push(number);
+      tokens.push({
+        type: 'number',
+        value: Number(number),
+      });
       cursor++;
       continue;
     }
 
     if (isParenthesis(character)) {
       const parenthesis = string.substring(cursor, cursor + 1);
-      tokens.push(parenthesis);
+      tokens.push({
+        type: 'parenthesis',
+        value: parenthesis,
+        opening: isOpeningParenthesis(parenthesis),
+      });
       cursor++;
       continue;
     }
 
     if (isQuote(character)) {
       const quote = string.substring(cursor, cursor + 1);
-      tokens.push(quote);
+      tokens.push({
+        type: 'quote',
+        value: quote,
+      });
       cursor++;
       continue;
     }
 
     if (isOperator(character)) {
       const operator = string.substring(cursor, cursor + 1);
-      tokens.push(operator);
+      tokens.push({
+        type: 'operator',
+      });
       cursor++;
       continue;
     }
@@ -62,7 +78,9 @@ const tokenize = (string) => {
 
     cursor++;
   }
+  console.log(tokens)
   return tokens;
 }
+
 
 module.exports = { tokenize };
