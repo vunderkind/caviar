@@ -90,6 +90,5 @@ const tokenize = (string) => {
   return tokens;
 }
 
-tokenize('hello world e route 23 4 5  6 834789489');
 
 module.exports = { tokenize };

@@ -7,16 +7,21 @@ describe('Lexical Analysis', () => {
         const string = 'hello world';
         const tokens = tokenize(string);
     
-        assert.deepEqual(tokens, ['h', 'e', 'l', 'l', 'o', 'w', 'o', 'r', 'l', 'd']);
+        assert.deepEqual(tokens, [{
+            type: 'word',
+            value: 'hello'
+        }, {
+            type: 'word',
+            value: 'world'
+        }]);
     }
     );
 
     it('Should throw error if unparseable character is part of input string', () => {
         const string = 'hello world?';
     
-        assert.throws(() => tokenize(string));
-    }
-    );
+        assert.throws(() => tokenize(string), new Error());
+    });
 
     it('Should return empty array of tokens if empty input is passed', () => {
         const string = '';
@@ -29,6 +34,14 @@ describe('Lexical Analysis', () => {
         const string = '<>';
         const tokens = tokenize(string);
     
-        assert.deepEqual(tokens, ['<', '>']);
+        assert.deepEqual(tokens, [{
+            type: 'parenthesis',
+            value: '<',
+            opening: true
+        }, {
+            type: 'parenthesis',
+            value: '>',
+            opening: false
+        }]);
     })
 })
