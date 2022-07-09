@@ -25,7 +25,11 @@ const tokenize = (string) => {
     }
 
     if (isLetter(character)) {
-      const word = string.substring(cursor, cursor + 1);
+      let word = string.substring(cursor, cursor + 1);
+      while (!isWhiteSpace(string[cursor + 1]) && cursor + 1 < string.length)  {
+        word += string[cursor + 1];
+        cursor++;
+      }
       tokens.push({
         type: 'word',
         value: word,
@@ -35,10 +39,14 @@ const tokenize = (string) => {
     }
 
     if (isNumber(character)) {
-      const number = string.substring(cursor, cursor + 1);
+      let  number = string.substring(cursor, cursor + 1);
+      while (!isWhiteSpace(string[cursor + 1]) && cursor + 1 < string.length)  {
+        number += string[cursor + 1];
+        cursor++;
+      }
       tokens.push({
         type: 'number',
-        value: Number(number),
+        value: +number,
       });
       cursor++;
       continue;
@@ -82,5 +90,6 @@ const tokenize = (string) => {
   return tokens;
 }
 
+tokenize('hello world e route 23 4 5  6 834789489');
 
 module.exports = { tokenize };
