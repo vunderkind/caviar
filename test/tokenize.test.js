@@ -1,4 +1,6 @@
 const assert = require('assert');
+const chai = require('chai');
+const expect = chai.expect;
 
 const { tokenize }  = require('../tokenize');
 
@@ -18,9 +20,9 @@ describe('Lexical Analysis', () => {
     );
 
     it('Should throw error if unparseable character is part of input string', () => {
-        const string = 'hello world?';
+        const string = '?';
     
-        assert.throws(() => tokenize(string), new Error());
+        expect(() => tokenize(string)).to.throw(Error, 'Your input contains unrecognized character, "?". \n Consider reading Caviar\'s docs to see how to properly write expressions.');
     });
 
     it('Should return empty array of tokens if empty input is passed', () => {

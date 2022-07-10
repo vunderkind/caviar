@@ -19,6 +19,7 @@
   "homepage": "https://github.com/vunderkind/caviar#readme",
   "dependencies": {},
   "devDependencies": {
+    "chai": "^4.3.6",
     "mocha": "^10.0.0"
   }
 }

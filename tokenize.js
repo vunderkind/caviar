@@ -90,5 +90,6 @@ const tokenize = (string) => {
   return tokens;
 }
 
+tokenize('hello world?')
 
 module.exports = { tokenize };
